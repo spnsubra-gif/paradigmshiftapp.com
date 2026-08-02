@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security — Paradigm Shift Apps</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <a href="index.html" class="wordmark">Paradigm<span> Shift</span> Apps</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-conditions.html">Terms</a>
+      <a href="security.html" class="current">Security</a>
+      <a href="support.html">Support</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">Trust</div>
+    <h1 class="page-title">Security</h1>
+    <div class="updated">Last updated: <span class="mono-inline" style="color:var(--accent)">[insert date before publishing]</span></div>
+  </div>
+
+  <div class="content">
+    <p>We take the security of your data seriously. This page describes the measures in place to protect your information within Luna and future Paradigm Shift Apps products.</p>
+
+    <h2>Authentication &amp; session security</h2>
+    <p>Handled through Supabase Auth. Session tokens are stored using device-level secure storage, not plain local storage.</p>
+
+    <h2>Encrypted transit</h2>
+    <p>All data sent between the App and our servers is encrypted using HTTPS/TLS.</p>
+
+    <h2>Backend hardening</h2>
+    <p>Our AI-powered backend functions enforce rate limiting, POST-only request handling, and schema validation, to guard against malformed or abusive requests.</p>
+
+    <h2>Least-privilege data collection</h2>
+    <p>We only request the device permissions the App actually needs. For example, we removed the Android microphone permission once we confirmed it was unused.</p>
+
+    <h2>Dependency monitoring</h2>
+    <p>We track and patch known vulnerabilities in the libraries the App depends on.</p>
+
+    <h2>AI data handling</h2>
+    <p>Data sent to Anthropic's Claude API for AI-generated features (check-ins, weekly reflections, and alarm-photo verification) is transmitted securely and used only to generate the relevant response.</p>
+
+    <h2>Reporting a vulnerability</h2>
+    <p>If you discover a security vulnerability in Luna or any Paradigm Shift Apps product, please email <a href="mailto:suria@paradigmshiftapp.com">suria@paradigmshiftapp.com</a> so we can investigate and address it promptly.</p>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-label">Paradigm Shift Apps</div>
+      <div class="footer-mono">paradigmshiftapp.com</div>
+      <div class="footer-copy">&copy; 2026 Paradigm Shift Apps.</div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-label">Policies</div>
+      <div class="footer-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-conditions.html">Terms &amp; Conditions</a>
+        <a href="security.html">Security</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-label">Contact</div>
+      <div class="footer-links">
+        <a href="support.html">Support</a>
+        <a href="mailto:suria@paradigmshiftapp.com">suria@paradigmshiftapp.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
