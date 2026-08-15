@@ -309,6 +309,15 @@ h1.display {
 
 .content h2:first-child { margin-top: 0; }
 
+.content h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--text);
+  margin: 28px 0 10px;
+}
+
 .content p { color: var(--text-dim); margin: 0 0 16px; }
 .content strong { color: var(--text); }
 

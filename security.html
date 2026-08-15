@@ -47,7 +47,7 @@
     <p>We track and patch known vulnerabilities in the libraries the App depends on.</p>
 
     <h2>AI data handling</h2>
-    <p>Data sent to Anthropic's Claude API for AI-generated features (check-ins, weekly reflections, and alarm-photo verification) is transmitted securely and used only to generate the relevant response.</p>
+    <p>Several Luna features send your content to Anthropic's Claude API: journal entries and sleep data for check-ins and weekly reflections, and Face check / Room check photos for alarm verification. This content leaves your device and is transmitted over HTTPS/TLS via our Supabase Edge Functions. Verification photos are processed in-flight and are never written to our database or storage — see the <a href="/privacy">Privacy Policy</a> for the full detail on what is and isn't retained.</p>
 
     <h2>Reporting a vulnerability</h2>
     <p>If you discover a security vulnerability in Luna or any Paradigm Shift Apps product, please email <a href="mailto:suria@paradigmshiftapp.com">suria@paradigmshiftapp.com</a> so we can investigate and address it promptly.</p>
