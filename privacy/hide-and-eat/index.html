@@ -30,7 +30,16 @@
   </div>
 
   <div class="content">
-    <p><strong>Hide and Eat</strong> ("the Game") is developed and operated by <strong>Paradigm Shift Apps</strong>, based in Singapore. This policy covers the Game specifically. Our general policy, covering Luna and the rest of our products, is at <a href="/privacy">paradigmshiftapp.com/privacy</a>.</p>
+    <div class="policy-switch">
+      <label for="policy-picker">Privacy policy for</label>
+      <select id="policy-picker" onchange="if(this.value){location.href=this.value;}">
+        <option value="/privacy">Luna</option>
+        <option value="/privacy/hide-and-eat" selected>Hide and Eat</option>
+      </select>
+      <span class="switch-note">Each app collects different information, so each has its own policy.</span>
+      <noscript><a href="/privacy">Luna</a> · <a href="/privacy/hide-and-eat">Hide and Eat</a></noscript>
+    </div>
+    <p><strong>Hide and Eat</strong> ("the Game") is developed and operated by <strong>Paradigm Shift Apps</strong>, based in Singapore. This policy covers the Game specifically.</p>
 
     <p>The short version: we don't ask you for anything, there are no accounts, and we never see your scores. The Game is free because it shows advertisements, and our advertising provider — Google — does collect information about your device. That is what most of this policy is about.</p>
 

@@ -366,3 +366,41 @@ h1.display {
   .hero { padding: 56px 0 16px; }
   .page-head { padding: 48px 0 8px; }
 }
+
+/* ---------- Hide and Eat app glyph ---------- */
+.app-glyph.glyph-he {
+  background: radial-gradient(circle at 32% 32%, #d8452f, #6e1a12 70%);
+}
+
+/* ---------- per-app policy switcher ---------- */
+.policy-switch {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 0 0 34px;
+}
+.policy-switch label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.policy-switch select {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  cursor: pointer;
+}
+.policy-switch select:hover { border-color: var(--accent-line); }
+.policy-switch select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.policy-switch .switch-note { color: var(--text-faint); font-size: 13px; }

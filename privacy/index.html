@@ -30,7 +30,16 @@
   </div>
 
   <div class="content">
-    <p>Luna ("Luna," "the App," "we," "us," "our") is developed and operated by <strong>Paradigm Shift Apps</strong>, based in Singapore. Luna is currently our first app, with more planned under the Paradigm Shift Apps name — where relevant, this Policy is written to apply across our current and future products.</p>
+    <div class="policy-switch">
+      <label for="policy-picker">Privacy policy for</label>
+      <select id="policy-picker" onchange="if(this.value){location.href=this.value;}">
+        <option value="/privacy" selected>Luna</option>
+        <option value="/privacy/hide-and-eat">Hide and Eat</option>
+      </select>
+      <span class="switch-note">Each app collects different information, so each has its own policy.</span>
+      <noscript><a href="/privacy">Luna</a> · <a href="/privacy/hide-and-eat">Hide and Eat</a></noscript>
+    </div>
+    <p>Luna ("Luna," "the App," "we," "us," "our") is developed and operated by <strong>Paradigm Shift Apps</strong>, based in Singapore. This Policy covers Luna and, where relevant, our other products.</p>
     <p>By downloading or using Luna, you agree to the collection and use of information as described in this Privacy Policy. If you do not agree, please do not use the App.</p>
 
     <h2>1. Information we collect</h2>
@@ -111,6 +120,7 @@
       <div class="footer-label">Policies</div>
       <div class="footer-links">
         <a href="/privacy">Privacy Policy</a>
+        <a href="/privacy/hide-and-eat">Hide and Eat Privacy</a>
         <a href="/terms">Terms &amp; Conditions</a>
         <a href="/security.html">Security</a>
       </div>
