@@ -1,87 +1,194 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paradigm Shift Apps</title>
-<meta name="description" content="Paradigm Shift Apps — a solo-built studio in Singapore, making Luna and Hide and Eat.">
-<link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paradigm Shift Apps — a Singapore app studio</title>
+<meta name="description" content="Paradigm Shift Apps is a Singapore app studio building Lunga, Luna and Hide and Eat.">
+<link rel="canonical" href="https://paradigmshiftapp.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F4F5F1;--ink:#12151C;--muted:#5F6470;--line:#D6D9D2;--accent:#1E3DDB;--luna:#2B2F6E;--lunga:#D9973A;--hide:#C0392B;--max:1120px;--gutter:clamp(20px,4vw,48px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;font-optical-sizing:auto;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+header{border-bottom:1px solid var(--line);position:relative;z-index:5}
+.nav{display:flex;align-items:center;justify-content:space-between;min-height:68px;gap:16px;flex-wrap:wrap;padding:10px 0}
+.mark{font-weight:700;font-size:19px;letter-spacing:-.01em;white-space:nowrap}
+.links{display:flex;gap:6px 22px;font-size:16px;align-items:center;flex-wrap:wrap}
+.links>a{padding:6px 0;border-bottom:1px solid transparent}
+.links>a:hover,.links>a[aria-current]{border-bottom-color:var(--ink)}
+details.dd{position:relative}
+details.dd summary{list-style:none;cursor:pointer;padding:6px 0;border-bottom:1px solid transparent;display:flex;align-items:center;gap:6px}
+details.dd summary::-webkit-details-marker{display:none}
+details.dd summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+details.dd[open] summary,details.dd.on summary{border-bottom-color:var(--ink)}
+details.dd .menu{position:absolute;top:calc(100% + 8px);left:-12px;min-width:190px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:6px;box-shadow:0 8px 24px rgba(18,21,28,.08);display:flex;flex-direction:column}
+details.dd .menu span{padding:8px 10px 4px;font-size:12px;color:var(--muted)}
+details.dd .menu a{padding:9px 10px;border-radius:4px;font-size:15px}
+details.dd .menu a:hover{background:var(--paper)}
+details.dd .menu a.cur{font-weight:700}
+.hero{padding:clamp(64px,11vw,140px) 0 clamp(48px,7vw,96px)}
+.hero h1{margin:0 0 28px;max-width:16ch;font-size:clamp(40px,7.2vw,88px);line-height:.98;letter-spacing:-.025em;font-weight:600}
+.hero p{max-width:52ch;margin:0;font-size:clamp(18px,1.6vw,21px);color:var(--muted)}
+.hero .where{margin-top:36px;color:var(--ink);font-size:16px}
+section{padding:clamp(56px,7vw,96px) 0;border-top:1px solid var(--line)}
+h2{margin:0 0 8px;font-size:clamp(26px,3vw,36px);letter-spacing:-.02em;font-weight:600;line-height:1.1}
+.lede{margin:0 0 40px;max-width:56ch;color:var(--muted);font-size:18px}
+.ledger{border-top:1px solid var(--ink)}
+.cat{margin:40px 0 0;padding-bottom:10px;font-size:15px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--line)}
+.cat:first-child{margin-top:22px}
+.row{display:grid;grid-template-columns:minmax(150px,1.1fr) 3fr 1.2fr 1fr;gap:24px;padding:30px 0;border-bottom:1px solid var(--line);align-items:start}
+.row .name{display:flex;align-items:center;gap:12px;font-weight:700;font-size:24px;letter-spacing:-.015em}
+.swatch{width:14px;height:14px;border-radius:50%;flex:none}
+.swatch.luna{background:var(--luna)}.swatch.lunga{background:var(--lunga)}.swatch.hide{background:var(--hide)}
+.rowlink{display:inline-flex;align-items:center;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:2px}
+.rowlink:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.row .what small{display:block;margin-top:8px;color:var(--muted);font-size:15px}
+.row .status,.row .platform{color:var(--muted);font-size:15px;padding-top:6px}
+.row .links2{display:flex;gap:14px;margin-top:10px;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.row .links2 a{border-bottom:1px solid var(--line)}
+@media (max-width:760px){.row{grid-template-columns:1fr;gap:10px;padding:24px 0}.row .status,.row .platform{padding-top:0}}
+.offer{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.offer ul{list-style:none;padding:0;margin:0;border-top:1px solid var(--ink)}
+.offer li{padding:18px 0;border-bottom:1px solid var(--line)}
+.offer li strong{display:block;font-weight:600;margin-bottom:4px}
+.offer li span{color:var(--muted);font-size:16px}
+.cta{display:inline-block;margin-top:28px;padding:14px 22px;background:var(--accent);color:#fff;font-weight:600;border-radius:4px}
+.cta:hover{background:#1733B8}
+@media (max-width:820px){.offer{grid-template-columns:1fr}}
+.studio p{max-width:60ch;margin:0 0 18px;font-size:18px}
+.contact a.mail{font-size:clamp(22px,3.2vw,40px);font-weight:600;letter-spacing:-.02em;border-bottom:2px solid var(--ink);word-break:break-all}
+.contact a.mail:hover{border-bottom-color:var(--accent);color:var(--accent)}
+.contact p{margin:20px 0 0;color:var(--muted);max-width:52ch}
+/* legal pages */
+.doc{padding:clamp(40px,6vw,80px) 0 clamp(56px,7vw,96px)}
+.doc .kicker{color:var(--muted);font-size:15px;margin:0 0 10px}
+.doc h1{margin:0 0 6px;font-size:clamp(32px,4.6vw,56px);letter-spacing:-.025em;line-height:1.02;font-weight:600}
+.doc .updated{color:var(--muted);margin:0 0 40px;padding-bottom:22px;border-bottom:1px solid var(--line);font-size:15px}
+.switch{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 40px;padding:0 0 22px;border-bottom:1px solid var(--line);align-items:center}
+.switch small{color:var(--muted);margin-right:6px;font-size:14px}
+.switch a{padding:7px 12px;border:1px solid var(--line);border-radius:999px;font-size:15px}
+.switch a.cur{background:var(--ink);color:#fff;border-color:var(--ink)}
+.switch a:hover:not(.cur){border-color:var(--ink)}
+.body{max-width:70ch}
+.body h2{font-size:clamp(20px,2.2vw,26px);margin:38px 0 10px}
+.body h3{font-size:18px;margin:26px 0 8px}
+.body p,.body li{font-size:17px;line-height:1.6}
+.body ul{padding-left:22px}
+.body a{border-bottom:1px solid var(--muted)}
+.body a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.body .note{padding:16px 18px;border-left:3px solid var(--lunga);background:#fff;margin:0 0 28px}
+.faq dt{font-weight:600;margin-top:22px}
+.faq dd{margin:6px 0 0;color:var(--ink)}
+.mailbig{display:inline-block;margin:6px 0 30px;font-size:clamp(20px,2.6vw,30px);font-weight:600;letter-spacing:-.02em;border-bottom:2px solid var(--ink)}
+footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);font-size:15px}
+.foot{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
+.legal{display:flex;flex-wrap:wrap;gap:8px 24px}
+.legal a{border-bottom:1px solid transparent}
+.legal a:hover{border-bottom-color:var(--muted)}
+</style>
 </head>
 <body>
+<header><div class="wrap nav">
+  <a class="mark" href="/" aria-label="Paradigm Shift Apps home">Paradigm Shift Apps</a>
+  <nav class="links" aria-label="Site"><a href="/" aria-current="page">Home</a><details class="dd"><summary>Privacy</summary><div class="menu"><span>Privacy for</span><a href="/privacy/">Luna</a><a href="/privacy/hide-and-eat/">Hide and Eat</a><a href="/privacy/lunga/">Lunga</a></div></details><details class="dd"><summary>Terms</summary><div class="menu"><span>Terms for</span><a href="/terms/">Luna</a><a href="/terms/hide-and-eat/">Hide and Eat</a><a href="/terms/lunga/">Lunga</a></div></details><details class="dd"><summary>Security</summary><div class="menu"><span>Security for</span><a href="/security/">Luna</a><a href="/security/hide-and-eat/">Hide and Eat</a><a href="/security/lunga/">Lunga</a></div></details><details class="dd"><summary>Support</summary><div class="menu"><span>Support for</span><a href="/support/">Luna</a><a href="/support/hide-and-eat/">Hide and Eat</a><a href="/support/lunga/">Lunga</a></div></details></nav>
+</div></header>
+<main>
 
-<header class="site">
-  <nav class="nav">
-    <a href="index.html" class="wordmark">Paradigm<span> Shift</span> Apps</a>
-    <div class="nav-links">
-      <a href="index.html" class="current">Home</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-      <a href="security.html">Security</a>
-      <a href="support.html">Support</a>
-    </div>
-  </nav>
-</header>
+<div class="wrap hero">
+  <h1>We build and run consumer apps for Southeast Asia.</h1>
+  <p>Paradigm Shift Apps is a Singapore app studio. We design, build and operate our own products rather than building for clients, so we stay responsible for them after launch.</p>
+  <p class="where">Singapore, with our first Indonesian launch in Bali.</p>
+</div>
 
-<main class="wrap">
-  <section class="hero">
-    <div class="eyebrow">Singapore · Independent app studio</div>
-    <h1 class="display">Small, honest tools for the parts of life that are easy to neglect.</h1>
-    <p class="lede">Paradigm Shift Apps is a solo-built studio making apps that don't try to do everything — just one thing, done with care.</p>
-  </section>
-
-  <div class="fault"><span class="fault-a"></span><span class="fault-connector"></span><span class="fault-b"></span></div>
-
-  <section>
-    <div class="footer-label">Our apps</div>
-    <div class="app-card">
-      <div class="app-glyph" aria-hidden="true"></div>
-      <div class="app-body">
-        <div class="app-name">Luna</div>
-        <p class="app-desc">A sleep companion — wind-down soundscapes, gentle wake alarms, and a quiet nightly check-in that notices how your sleep is actually going.</p>
-        <span class="app-status">In development</span>
+<section id="apps"><div class="wrap">
+  <h2>Apps</h2>
+  <p class="lede">Everything we make is our own, and we keep running it after launch.</p>
+  <div class="ledger">
+    <h3 class="cat">Travel and services</h3>
+    <div class="row">
+      <div class="name"><a class="rowlink" href="#partners"><span class="swatch lunga" aria-hidden="true"></span>Lunga</a></div>
+      <div class="what">Guest services for managed villas in Bali. Guests scan a code in the villa and book laundry, scooters, drivers and in-villa extras directly, paying by card in the app. One app, three roles: guests book, vendors fulfil, and property managers see every order at their properties, with a web dashboard for the desk.
+        <small>Lunga is Balinese for “go”.</small>
+        <div class="links2"><a href="/privacy/lunga/">Privacy</a><a href="/terms/lunga/">Terms</a><a href="/support/lunga/">Support</a></div>
       </div>
+      <div class="status">In development. Selecting launch partners in Bali.</div>
+      <div class="platform">iOS, Android and web</div>
     </div>
 
-    <div class="app-card">
-      <div class="app-glyph glyph-he" aria-hidden="true"></div>
-      <div class="app-body">
-        <div class="app-name">Hide and Eat</div>
-        <p class="app-desc">Eat crisps in class without getting caught. One packet, one teacher who keeps looking up, and the nerve to take one more — a free arcade game about the second before you are seen.</p>
-        <span class="app-status">In development</span>
+    <h3 class="cat">Health and lifestyle</h3>
+    <div class="row">
+      <div class="name"><span class="swatch luna" aria-hidden="true"></span>Luna</div>
+      <div class="what">Luna: Sleep &amp; Wellness. A sleep companion with wind-down soundscapes, gentle wake alarms, and a quiet nightly check-in that notices how your sleep is actually going.
+        <div class="links2"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/security/">Security</a><a href="/support/">Support</a></div>
       </div>
+      <div class="status">Version 1.1 on iOS.</div>
+      <div class="platform">iOS</div>
     </div>
 
-    <div class="next-card">
-      More apps are planned under the Paradigm Shift Apps name. This page will grow with them.
-    </div>
-  </section>
-</main>
-
-<footer class="site">
-  <div class="footer-inner">
-    <div class="footer-col">
-      <div class="footer-label">Paradigm Shift Apps</div>
-      <div class="footer-mono">paradigmshiftapp.com</div>
-      <div class="footer-copy">&copy; 2026 Paradigm Shift Apps.</div>
-    </div>
-    <div class="footer-col">
-      <div class="footer-label">Policies</div>
-      <div class="footer-links">
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/privacy/hide-and-eat">Hide and Eat Privacy</a>
-        <a href="/terms">Terms &amp; Conditions</a>
-        <a href="security.html">Security</a>
+    <h3 class="cat">Games</h3>
+    <div class="row">
+      <div class="name"><span class="swatch hide" aria-hidden="true"></span>Hide and Eat</div>
+      <div class="what">Eat crisps in class without getting caught. One packet, one teacher who keeps looking up, and the nerve to take one more. A free arcade game about the second before you are seen.
+        <div class="links2"><a href="/privacy/hide-and-eat/">Privacy</a><a href="/terms/hide-and-eat/">Terms</a><a href="/support/hide-and-eat/">Support</a></div>
       </div>
-    </div>
-    <div class="footer-col">
-      <div class="footer-label">Contact</div>
-      <div class="footer-links">
-        <a href="support.html">Support</a>
-        <a href="mailto:suria@paradigmshiftapp.com">suria@paradigmshiftapp.com</a>
-      </div>
+      <div class="status">Preparing for App Store submission.</div>
+      <div class="platform">iOS</div>
     </div>
   </div>
-</footer>
+</div></section>
 
+<section id="partners"><div class="wrap">
+  <h2>Partner with Lunga</h2>
+  <p class="lede">For villa and boutique hotel managers in Bali. Lunga takes guest requests off your WhatsApp without taking you out of the loop.</p>
+  <div class="offer">
+    <ul>
+      <li><strong>No cost to your properties</strong><span>You place a card in each villa and a link in your arrival message. That is the whole setup.</span></li>
+      <li><strong>Your vendors first</strong><span>The laundry, drivers and rental partners you already trust are onboarded before anyone else, and you keep those relationships.</span></li>
+      <li><strong>No more relaying</strong><span>Booking, scheduling and payment happen in the app, so your staff stop passing messages between guests and vendors.</span></li>
+      <li><strong>Full visibility</strong><span>See what guests have ordered at each villa as it happens, so nothing arrives at your property that you did not know about.</span></li>
+      <li><strong>Support handled by us</strong><span>Guests contact Lunga support directly. Problems with a vendor are ours to resolve, not your team’s.</span></li>
+    </ul>
+    <div>
+      <p style="margin:0;max-width:44ch;color:var(--muted);font-size:18px">We are working with a small group of Bali property managers ahead of launch, shaping the product around how their teams already work. If that sounds like you, we would like to talk.</p>
+      <a class="cta" href="mailto:suria@paradigmshiftapp.com?subject=Lunga%20partnership">Talk to us about Lunga</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="studio"><div class="wrap">
+  <h2>The studio</h2>
+  <p class="lede">Small by design.</p>
+  <p>We are a small team based in Singapore. We build with React Native and Supabase, ship to both app stores, and run our own support. Each product starts with the people who will actually use it, which is why Lunga is being built alongside property managers rather than presented to them finished.</p>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap">
+  <h2>Contact</h2>
+  <p class="lede">For partnerships, press, or anything else.</p>
+  <a class="mail" href="mailto:suria@paradigmshiftapp.com">suria@paradigmshiftapp.com</a>
+  <p>We reply within two working days. WhatsApp is fine too if you already have a number for us.</p>
+</div></section>
+
+</main>
+<footer><div class="wrap foot">
+  <div>© 2026 Paradigm Shift Apps. Singapore.</div>
+  <div class="legal">
+    <a href="/support/">Support</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <a href="/security/">Security</a>
+    <a href="mailto:suria@paradigmshiftapp.com">suria@paradigmshiftapp.com</a>
+  </div>
+</div></footer>
+<script>
+document.addEventListener('click',e=>{document.querySelectorAll('details.dd[open]').forEach(d=>{if(!d.contains(e.target))d.removeAttribute('open')})});
+</script>
 </body>
 </html>
