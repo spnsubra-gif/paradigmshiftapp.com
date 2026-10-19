@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lunga Waitlist</title>
-<meta name="description" content="Scooters, laundry and massage in Canggu, booked in a tap. Join the waitlist for our launch promo, Rp 50,000 off your first booking.">
+<meta name="description" content="Scooters, laundry and massage in Canggu, booked in a tap. Join the waitlist for our launch promo, up to Rp 50,000 off your first booking.">
 <link rel="canonical" href="https://paradigmshiftapp.com/lunga/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lunga">
 <meta property="og:title" content="Lunga · Scooters, laundry and massage in Canggu">
-<meta property="og:description" content="Scooters, laundry and massage in Canggu, booked in a tap. Join the waitlist for our launch promo, Rp 50,000 off your first booking.">
+<meta property="og:description" content="Scooters, laundry and massage in Canggu, booked in a tap. Join the waitlist for our launch promo, up to Rp 50,000 off your first booking.">
 <meta property="og:url" content="https://paradigmshiftapp.com/lunga/">
 <meta property="og:image" content="https://paradigmshiftapp.com/lunga/og.png">
 <meta property="og:image:width" content="1200">
@@ -178,9 +178,9 @@ footer .mail { user-select: all; color: var(--ink); font-weight: 600; }
   <section class="signup" id="join" aria-labelledby="join-title">
     <div id="join-form-wrap">
       <form id="waitlist-form" novalidate>
-        <span class="perk">Launch promo · Rp 50,000 off</span>
+        <span class="perk">Launch promo · Up to Rp 50,000 off</span>
         <h2 id="join-title">Join the waitlist</h2>
-        <p class="sub">Sign up before launch and we'll email you a Rp 50,000 code for your first booking of Rp 300,000 or more. Limited time only.</p>
+        <p class="sub">Sign up before launch and we'll email you a code for 20% off your first laundry, scooter or massage, up to Rp 50,000. Limited time only.</p>
         <div class="field">
           <label for="email">Email</label>
           <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
@@ -215,9 +215,9 @@ footer .mail { user-select: all; color: var(--ink); font-weight: 600; }
       </form>
     </div>
     <div id="done" class="done" hidden>
-      <span class="perk">Launch promo · Rp 50,000 off</span>
+      <span class="perk">Launch promo · Up to Rp 50,000 off</span>
       <h2 id="done-title">You're on the list</h2>
-      <p id="done-text">We'll email your Rp 50,000 code when Lunga launches. Know someone heading to Bali? Send them the link.</p>
+      <p id="done-text">We'll email your launch promo code when Lunga launches. Know someone heading to Bali? Send them the link.</p>
       <button class="ghost" type="button" id="share">Share Lunga</button>
       <p id="share-status" class="status note" role="status" aria-live="polite"></p>
     </div>
@@ -259,7 +259,7 @@ footer .mail { user-select: all; color: var(--ink); font-weight: 600; }
       <details><summary>When does Lunga launch?</summary><p>Soon. Join the waitlist and you'll be the first to know.</p></details>
       <details><summary>Where does it work?</summary><p>Canggu, Pererenan and Seseh first, then more of Bali.</p></details>
       <details><summary>How do I pay?</summary><p>By card in the app, with prices in rupiah. You pay when you book, and if a business can't take your booking, you get your money back.</p></details>
-      <details><summary>How does the launch promo work?</summary><p>Join before launch and we'll email you a code for Rp 50,000 off your first booking of Rp 300,000 or more, such as a few days' scooter rental. It's a limited-time launch promo, one code per person, while it lasts.</p></details>
+      <details><summary>How does the launch promo work?</summary><p>Join before launch and we'll email you a code for 20% off your first booking, up to Rp 50,000, whether it's a laundry, a scooter or a massage. Use it within 30 days of launch. It's a limited-time launch promo, one code per person, while it lasts.</p></details>
       <details><summary>Is there an app to download?</summary><p>Yes. Lunga is coming to iPhone and Android.</p></details>
     </div>
   </section>
@@ -299,7 +299,7 @@ const LUNGA_CONFIG = {
   function showDone(already) {
     if (already) {
       $("done-title").textContent = "You're already on the list";
-      $("done-text").textContent = "No need to sign up twice. We'll email your Rp 50,000 code when Lunga launches.";
+      $("done-text").textContent = "No need to sign up twice. We'll email your launch promo code when Lunga launches.";
     }
     $("join-form-wrap").hidden = true; $("done").hidden = false; $("done-title").setAttribute("tabindex", "-1"); $("done-title").focus();
   }
@@ -337,7 +337,7 @@ const LUNGA_CONFIG = {
 
   $("share").addEventListener("click", async () => {
     const url = LUNGA_CONFIG.shareUrl + "?ref=friend";
-    const text = "Scooters, laundry and massage in Canggu, booked in a tap. Join the Lunga waitlist for the launch promo, Rp 50,000 off your first booking.";
+    const text = "Scooters, laundry and massage in Canggu, booked in a tap. Join the Lunga waitlist for the launch promo, up to Rp 50,000 off your first booking.";
     const out = $("share-status");
     if (navigator.share) { try { await navigator.share({ title: "Lunga", text, url }); return; } catch (e) { if (e && e.name === "AbortError") return; } }
     try { await navigator.clipboard.writeText(url); out.textContent = "Link copied. Paste it in your chat."; }
