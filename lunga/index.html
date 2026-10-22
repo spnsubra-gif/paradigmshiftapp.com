@@ -25,6 +25,18 @@
   try { var m = (new URLSearchParams(location.search).get("ref") || "").toLowerCase().match(/scooter|laundry|massage/); if (m) k = m[0]; } catch (e) {}
   var d = document.documentElement; d.setAttribute("data-k", k); d.className += " js";
   window.LUNGA_ART = "art-" + (k === "all" ? "scooter" : k) + ".webp";
+  // This visitor's own code: five random letters (no vowels, so never a word) and 20 for the 20%, like MHNDK20.
+  // Kept in this browser, so coming back shows the same code.
+  var A = "BCDFGHJKLMNPRSTVXZ", c = null, r = [], i;
+  try { c = localStorage.getItem("lunga_code"); } catch (e) {}
+  if (!/^[BCDFGHJKLMNPRSTVXZ]{5}20$/.test(c || "")) {
+    try { var u = new Uint32Array(5); crypto.getRandomValues(u); for (i = 0; i < 5; i++) r.push(u[i]); }
+    catch (e) { for (i = 0; i < 5; i++) r.push(Math.floor(Math.random() * 4294967296)); }
+    c = ""; for (i = 0; i < 5; i++) c += A.charAt(r[i] % A.length);
+    c += "20";
+    try { localStorage.setItem("lunga_code", c); } catch (e) {}
+  }
+  window.LUNGA_CODE = c;
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap">
@@ -62,14 +74,15 @@ html[data-k="massage"] .v-massage, html:not([data-k]) .v-all { display: inline; 
 .t-head { margin: 0; }
 .t-head span { display: block; }
 .t-label { font: 700 13px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; }
-.t-code { margin-top: 10px; font: 700 clamp(46px, 15vw, 64px)/1 var(--font); letter-spacing: .05em; -webkit-user-select: all; user-select: all; }
+.t-code { margin-top: 10px; font: 700 60px/1 var(--font); font-size: clamp(36px, calc((100vw - 76px) / 6.1), 56px); letter-spacing: .05em;
+          white-space: nowrap; -webkit-user-select: all; user-select: all; }   /* sized so even MMMMM20 fits the voucher */
 .t-tear { position: relative; height: 0; margin: 16px -20px 14px; border-top: 2px dashed rgba(139, 35, 50, .4); }
 .t-tear::before, .t-tear::after { content: ""; position: absolute; top: -13px; width: 24px; height: 24px; border-radius: 50%; background: var(--berry); }
 .t-tear::before { left: -12px; }
 .t-tear::after { right: -12px; }
 .t-offer { margin: 0; font: 700 21px/1.2 var(--font); }
 .for { color: #5E504B; font-size: 15.5px; line-height: 1.35; margin: 4px auto 0; max-width: 22em; text-wrap: balance; }
-.claim { color: var(--sand); font: 600 17px/1.35 var(--font); margin: 26px auto 0; max-width: 21em; }
+.claim { color: var(--sand); font: 600 17px/1.35 var(--font); margin: 26px auto 0; max-width: 21em; text-wrap: balance; }
 
 .notify { margin-top: 14px; }
 .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 58px; border-radius: 16px;
@@ -125,7 +138,7 @@ html.js #art, .art.nojs { display: block; }
   .hero { margin-top: 12px; }
   .eyebrow { font-size: 23px; }
   .ticket { margin-top: 16px; padding: 14px 18px 16px; }
-  .t-code { font-size: clamp(40px, 12.5vw, 52px); margin-top: 8px; }
+  .t-code { font-size: clamp(34px, calc((100vw - 72px) / 6.4), 48px); margin-top: 8px; }
   .t-tear { margin: 12px -18px 10px; }
   .t-offer { font-size: 19px; }
   .for { font-size: 14.5px; }
@@ -150,7 +163,8 @@ html.js #art, .art.nojs { display: block; }
     <section class="hero" aria-labelledby="offer">
       <p class="eyebrow">Launch day promo</p>
       <div class="ticket">
-        <h1 class="t-head" id="offer"><span class="t-label">Your code</span><span class="t-code">LUNGA20</span></h1>
+        <h1 class="t-head" id="offer"><span class="t-label">Your code</span><span class="t-code" id="code">LUNGA20</span></h1>
+        <script>document.getElementById("code").textContent = window.LUNGA_CODE || "LUNGA20";</script>
         <div class="t-tear" aria-hidden="true"></div>
         <p class="t-offer">Up to Rp 50,000 off</p>
         <p class="for"><span class="v v-all">on your first scooter, laundry or massage booking</span><span class="v v-scooter">on your first scooter rental</span><span class="v v-laundry">on your first laundry pickup</span><span class="v v-massage">on your first massage at your villa</span></p>
@@ -158,9 +172,9 @@ html.js #art, .art.nojs { display: block; }
       <p class="claim">Claim it and get notified when Lunga is live.</p>
 
       <div class="notify" id="notify">
-        <a class="wa-btn" id="wa" href="https://wa.me/6584944709?text=Hi%20Lunga%21%20I%27d%20like%20to%20claim%20LUNGA20%20and%20get%20notified%20on%20launch%20day%20%5BWEB%5D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.1A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 14h4.5"/></svg><span>Claim on WhatsApp</span></a>
+        <a class="wa-btn" id="wa" href="https://wa.me/6584944709?text=Hi%20Lunga%21%20I%27d%20like%20to%20claim%20my%20code%20LUNGA20%20and%20get%20notified%20on%20launch%20day%20%5BWEB%5D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.1A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 14h4.5"/></svg><span>Claim on WhatsApp</span></a>
         <p class="how">WhatsApp opens with the message ready.<br><strong>Just tap send.</strong></p>
-        <p class="after" id="after" hidden>Didn't open? WhatsApp us on <a href="https://wa.me/6584944709">+65 8494 4709</a> and say "LUNGA20".</p>
+        <p class="after" id="after" hidden>Didn't open? WhatsApp us on <a href="https://wa.me/6584944709">+65 8494 4709</a> with your code, <strong id="code-again">LUNGA20</strong>.</p>
       </div>
 
       <div class="alt" id="alt">
@@ -181,7 +195,7 @@ html.js #art, .art.nojs { display: block; }
 
       <div id="done" class="done" hidden>
         <h2 id="done-title">You're on the list</h2>
-        <p id="done-text">Your code LUNGA20 is saved to this email. We'll email you on launch day.</p>
+        <p id="done-text">We'll email your code on launch day.</p>
         <div class="share-row">
           <a class="share" id="share-wa" href="https://wa.me/?text=Lunga%20https%3A%2F%2Fparadigmshiftapp.com%2Flunga%2F%3Fref%3Dfriend-wa" target="_blank" rel="noopener">Share on WhatsApp</a>
           <button class="share ghost" type="button" id="share">Share to other apps</button>
@@ -198,7 +212,7 @@ html.js #art, .art.nojs { display: block; }
       <noscript><img class="art nojs" src="art-scooter.webp" alt="" width="840" height="519"></noscript>
     </section>
 
-    <p class="fine">LUNGA20: 20% off your first booking, up to Rp 50,000, valid 30 days from launch day. Works with the WhatsApp number or email you claim it with.
+    <p class="fine">20% off your first booking, up to Rp 50,000, valid 30 days from launch day. One code per person, and it only works once it's claimed.
       <a href="https://paradigmshiftapp.com/privacy/lunga/">Privacy</a></p>
   </main>
 </div>
@@ -222,7 +236,9 @@ const LUNGA_CONFIG = {
   // WhatsApp: the message is written for them and ends with where they came from, e.g. [LAUNDRY] for ?ref=ad-laundry,
   // [IG] for ?ref=ig, [WEB] with no ref, so each WhatsApp sign-up can be traced to its ad or post.
   const code = (source === "direct" ? "WEB" : source.replace(/^ad-/i, "").replace(/[^a-z0-9-]/gi, "").toUpperCase().slice(0, 20)) || "WEB";
-  const waText = "Hi Lunga! I'd like to claim LUNGA20 and get notified on launch day [" + code + "]";
+  const promo = window.LUNGA_CODE || "LUNGA20";
+  const waText = "Hi Lunga! I'd like to claim my code " + promo + " and get notified on launch day [" + code + "]";
+  $("code-again").textContent = promo;
   const wa = $("wa");
   wa.href = "https://wa.me/" + LUNGA_CONFIG.waNumber + "?text=" + encodeURIComponent(waText);
   wa.addEventListener("click", () => { setTimeout(() => { $("after").hidden = false; }, 1500); });
