@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="only light">
-<title>Lunga Waitlist</title>
-<meta name="description" content="Scooters, laundry and massage in Canggu, booked in a tap. Join the waitlist for the launch promo, up to Rp 50,000 off your first booking.">
+<title>Lunga Launch Promo</title>
+<meta name="description" content="Launch day promo: up to Rp 50,000 off your first scooter, laundry or massage booking in Canggu. Get notified on WhatsApp.">
 <link rel="canonical" href="https://paradigmshiftapp.com/lunga/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lunga">
-<meta property="og:title" content="Lunga · Scooters, laundry and massage in Canggu">
-<meta property="og:description" content="Scooters, laundry and massage in Canggu, booked in a tap. Join the waitlist for the launch promo, up to Rp 50,000 off your first booking.">
+<meta property="og:title" content="Lunga · Up to Rp 50,000 off on launch day">
+<meta property="og:description" content="Launch day promo: up to Rp 50,000 off your first scooter, laundry or massage booking in Canggu. Get notified on WhatsApp.">
 <meta property="og:url" content="https://paradigmshiftapp.com/lunga/">
 <meta property="og:image" content="https://paradigmshiftapp.com/lunga/og.png">
 <meta property="og:image:width" content="1200">
@@ -19,23 +19,22 @@
 <meta name="theme-color" content="#8B2332">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%238B2332'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='40' fill='%23F6F1E8'%3EL%3C/text%3E%3C/svg%3E">
 <script>
-// Which ad brought the visitor: ?ref=ad-laundry shows the laundry headline and picture, and so on. Set before the page
-// draws, so there's no flash of the wrong one. The picture starts loading right away.
+// Which ad brought the visitor (?ref=ad-laundry and so on), set before the page draws so the right line shows at once.
 (function () {
   var k = "all";
   try { var m = (new URLSearchParams(location.search).get("ref") || "").toLowerCase().match(/scooter|laundry|massage/); if (m) k = m[0]; } catch (e) {}
   var d = document.documentElement; d.setAttribute("data-k", k); d.className += " js";
   window.LUNGA_ART = "art-" + (k === "all" ? "scooter" : k) + ".webp";
-  var l = document.createElement("link"); l.rel = "preload"; l.as = "image"; l.href = window.LUNGA_ART; document.head.appendChild(l);
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap">
 <style>
-/* The ad, as a page: berry background, sand headline, blush lines, the ad's picture band, then one email box. */
+/* Berry page like the ads. The offer is the ads' round sticker, made big, then one big WhatsApp button. */
 :root {
   --berry: #8B2332; --berry-dark: #731B29; --sand: #F6F1E8; --blush: #F1D3D8; --ink: #2B2320; --hint: #8F807A;
   --warn: #FFE2A6;
   --font: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --stk: min(66vw, 290px);          /* the sticker's size; its text scales with it */
   color-scheme: only light;
 }
 * { box-sizing: border-box; }
@@ -50,19 +49,38 @@ a { color: var(--sand); text-underline-offset: 3px; }
 .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .wordmark { height: 40px; width: auto; display: block; }
 .pill { background: var(--blush); color: var(--berry); font: 600 13px/1 var(--font); padding: 9px 14px; border-radius: 999px; white-space: nowrap; }
-
-h1 { font: 600 clamp(33px, 9.6vw, 50px)/1.04 var(--font); letter-spacing: -0.02em; margin: 20px 0 0; }
-.sub { color: var(--blush); font-size: 15.5px; line-height: 1.4; margin: 10px 0 0; }
 .v { display: none; }
 html[data-k="all"] .v-all, html[data-k="scooter"] .v-scooter, html[data-k="laundry"] .v-laundry,
 html[data-k="massage"] .v-massage, html:not([data-k]) .v-all { display: inline; }
 
-.art { display: none; width: calc(100% + 20px); max-width: none; height: auto; aspect-ratio: 840 / 519; margin: 4px -10px 0; }
-html.js #art, .art.nojs { display: block; }
+.hero { text-align: center; margin-top: 18px; }
+.eyebrow { display: block; font: 700 clamp(26px, 7.6vw, 34px)/1.05 var(--font); letter-spacing: .05em; text-transform: uppercase;
+           color: var(--sand); margin: 2px 0 0; text-shadow: 0 2px 14px rgba(38, 6, 14, .35); }
+.sticker { width: var(--stk); height: var(--stk); margin: 22px auto 0; border-radius: 50%; background: var(--sand); color: var(--berry);
+           box-shadow: 0 0 0 7px #FFFFFF, 0 24px 44px -18px rgba(38, 6, 14, .85); transform: rotate(-6deg);
+           display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+.sticker::before { content: ""; position: absolute; inset: 5%; border-radius: 50%; border: 2px solid var(--berry); }
+.sticker span { display: block; line-height: 1; }
+.s1 { font-weight: 600; font-size: calc(var(--stk) * .095); margin-bottom: calc(var(--stk) * .03); }
+.s2 { font-weight: 700; font-size: calc(var(--stk) * .215); letter-spacing: -.03em; }
+.s3 { font-weight: 700; font-size: calc(var(--stk) * .13); margin-top: calc(var(--stk) * .025); letter-spacing: .02em; }
+.for { color: var(--blush); font-size: 17px; line-height: 1.35; margin: 24px auto 0; max-width: 22em; }
 
-.join { margin-top: 2px; }
-.join h2, .done h2 { font: 600 26px/1.15 var(--font); letter-spacing: -0.01em; margin: 0; }
-.offer { color: var(--blush); font-size: 14.5px; margin: 4px 0 12px; }
+.notify { margin-top: 20px; }
+.wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 58px; border-radius: 16px;
+          background: var(--sand); color: var(--berry); font: 700 18px/1.1 var(--font); text-decoration: none; padding: 0 18px;
+          box-shadow: 0 16px 30px -18px rgba(38, 6, 14, .85); transition: transform .12s ease, background .15s ease; }
+.wa-btn:hover { background: #FFFFFF; }
+.wa-btn:active { transform: scale(.98); }
+.wa-btn svg { width: 24px; height: 24px; flex: none; }
+.how { color: var(--blush); font-size: 13.5px; margin: 10px 0 0; text-align: center; }
+.how strong { color: var(--sand); font-weight: 600; }
+.after { color: var(--sand); font-size: 14px; margin: 8px 0 0; text-align: center; }
+
+.alt { margin-top: 16px; text-align: center; }
+.linkbtn { background: none; border: 0; padding: 6px 4px; color: var(--sand); font: 500 14.5px/1.3 var(--font); text-decoration: underline;
+           text-underline-offset: 3px; cursor: pointer; }
+.email-wrap { margin-top: 10px; text-align: left; }
 form { margin: 0; }
 .field { display: flex; gap: 6px; background: #FFFFFF; border-radius: 16px; padding: 5px; box-shadow: 0 16px 30px -18px rgba(38, 6, 14, .75); }
 .field:focus-within { outline: 3px solid var(--blush); outline-offset: 2px; }
@@ -76,33 +94,36 @@ form { margin: 0; }
 .cta[disabled] { opacity: .75; cursor: progress; }
 .status { min-height: 1.35em; margin: 8px 0 0; font-size: 14px; font-weight: 600; color: var(--warn); }
 .status.note { color: var(--blush); font-weight: 500; }
-.fine { color: var(--blush); font-size: 12.5px; line-height: 1.45; margin: 0; opacity: .9; }
 
-.done { display: grid; gap: 10px; justify-items: start; }
+.done { display: grid; gap: 10px; justify-items: center; text-align: center; margin-top: 6px; }
+.done h2 { font: 600 24px/1.15 var(--font); margin: 0; }
+.done h2:focus { outline: none; }
 .done p { color: var(--blush); margin: 0; font-size: 15px; }
-.done h2:focus { outline: none; }          /* focused only so screen readers announce it, no ring needed */
-.share-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.share-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 4px; }
 .share { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 12px; background: var(--sand);
-         color: var(--berry); font: 600 16px/1 var(--font); padding: 0 20px; min-height: 48px; cursor: pointer; text-decoration: none; }
-.share.alt { background: transparent; color: var(--sand); box-shadow: inset 0 0 0 2px rgba(246, 241, 232, .6); }
-.share.alt:hover { background: rgba(246, 241, 232, .1); }
+         color: var(--berry); font: 600 15px/1 var(--font); padding: 0 18px; min-height: 46px; cursor: pointer; text-decoration: none; }
+.share.ghost { background: transparent; color: var(--sand); box-shadow: inset 0 0 0 2px rgba(246, 241, 232, .6); }
 .sharelink { color: var(--ink); background: var(--sand); border-radius: 10px; padding: 8px 10px; user-select: all; word-break: break-all; font-size: 14px; }
 
-footer { margin-top: auto; padding-top: 40px; color: var(--blush); font-size: 12px; line-height: 1.5; opacity: .85; }
-footer p { margin: 2px 0; }
-footer .links { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; }
+.about { margin-top: 36px; padding-top: 22px; border-top: 1px solid rgba(241, 211, 216, .3); }
+.about h2 { font: 600 clamp(24px, 7vw, 32px)/1.1 var(--font); letter-spacing: -.01em; margin: 0; }
+.about p { color: var(--blush); margin: 6px 0 0; font-size: 15px; }
+.art { display: none; width: calc(100% + 20px); max-width: none; height: auto; aspect-ratio: 840 / 519; margin: 6px -10px 0; }
+html.js #art, .art.nojs { display: block; }
 
+.fine { color: var(--blush); font-size: 12.5px; line-height: 1.5; margin: 18px 0 0; opacity: .9; text-align: center; }
 .hp { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
-/* short phone screens (an iPhone SE inside Instagram's browser): a smaller headline and picture, so the email box
-   still shows without scrolling */
-@media (max-height: 640px) and (max-width: 500px) {
-  h1 { font-size: 30px; margin-top: 14px; }
-  .sub { font-size: 14.5px; margin-top: 8px; }
-  .art { width: 88%; margin: 2px auto 0; }
-  .join h2, .done h2 { font-size: 22px; }
-  .offer { font-size: 13.5px; margin: 2px 0 10px; }
+/* short phone screens (an iPhone SE inside Instagram's browser): smaller sticker so the button shows without scrolling */
+@media (max-height: 700px) and (max-width: 500px) {
+  :root { --stk: min(54vw, 214px); }
+  .hero { margin-top: 12px; }
+  .eyebrow { font-size: 23px; }
+  .sticker { margin-top: 16px; }
+  .for { font-size: 15.5px; margin-top: 16px; }
+  .notify { margin-top: 14px; }
+  .wa-btn { min-height: 54px; font-size: 17px; }
 }
 @media (min-width: 760px) {
   .page { padding-top: 36px; }
@@ -115,74 +136,100 @@ footer .links { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; 
 <div class="page">
   <header class="top">
     <img class="wordmark" src="data:image/png;base64,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" alt="Lunga" width="81" height="42">
-    <span class="pill">Coming soon to Canggu</span>
   </header>
 
   <main>
-    <h1><span class="v v-all">Scooters, laundry and massage<br>in a tap.</span><span class="v v-scooter">Rent a scooter<br>in a tap.</span><span class="v v-laundry">Laundry pickup<br>in a tap.</span><span class="v v-massage">Book a massage<br>in a tap.</span></h1>
-    <p class="sub"><span class="v v-all">Brought to your villa. Pay by card.</span><span class="v v-scooter">Delivered to your villa. Pay by card.</span><span class="v v-laundry">Picked up and brought back clean. Pay by card.</span><span class="v v-massage">Your therapist comes to your villa. Pay by card.</span></p>
-    <img id="art" class="art" alt="" width="840" height="519">
-    <script>document.getElementById("art").src = window.LUNGA_ART || "art-scooter.webp";</script>
-    <noscript><img class="art nojs" src="art-scooter.webp" alt="" width="840" height="519"></noscript>
+    <section class="hero" aria-labelledby="offer">
+      <p class="eyebrow">Launch day promo</p>
+      <h1 class="sticker" id="offer"><span class="s1">Up to Rp</span><span class="s2">50,000</span><span class="s3">OFF</span></h1>
+      <p class="for"><span class="v v-all">on your first scooter, laundry or massage booking</span><span class="v v-scooter">on your first scooter rental</span><span class="v v-laundry">on your first laundry pickup</span><span class="v v-massage">on your first massage at your villa</span></p>
 
-    <section class="join" id="join" aria-labelledby="join-title">
-      <div id="join-form-wrap">
-        <h2 id="join-title">Join the waitlist</h2>
-        <p class="offer">20% off your first booking · Limited time</p>
-        <form id="waitlist-form" novalidate>
-          <label class="sr" for="email">Email address</label>
-          <div class="field">
-            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off"
-                   spellcheck="false" enterkeyhint="go" placeholder="Your email" required>
-            <button class="cta" type="submit" id="submit">Sign up</button>
-          </div>
-          <div class="hp" aria-hidden="true"><label for="lunga-check">Leave this empty</label><input id="lunga-check" name="lunga_check" type="text" tabindex="-1" autocomplete="off"></div>
-          <p id="status" class="status" role="status" aria-live="polite"></p>
-          <p class="fine">We'll email your code at launch, valid 30 days. <a href="https://paradigmshiftapp.com/privacy/lunga/">Privacy</a></p>
-        </form>
+      <div class="notify" id="notify">
+        <a class="wa-btn" id="wa" href="https://wa.me/6584944709?text=Hi%20Lunga!%20Please%20notify%20me%20on%20launch%20day%20for%20my%20up%20to%20Rp%2050%2C000%20off%20%5BWEB%5D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.1A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 14h4.5"/></svg><span>Get notified on WhatsApp</span></a>
+        <p class="how">WhatsApp opens with the message ready.<br><strong>Just tap send.</strong></p>
+        <p class="after" id="after" hidden>Didn't open? WhatsApp us on <a href="https://wa.me/6584944709">+65 8494 4709</a> and say "Notify me".</p>
       </div>
+
+      <div class="alt" id="alt">
+        <button class="linkbtn" type="button" id="use-email" aria-expanded="false" aria-controls="email-wrap">No WhatsApp? Use email</button>
+        <div class="email-wrap" id="email-wrap" hidden>
+          <form id="waitlist-form" novalidate>
+            <label class="sr" for="email">Email address</label>
+            <div class="field">
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off"
+                     spellcheck="false" enterkeyhint="go" placeholder="Your email" required>
+              <button class="cta" type="submit" id="submit">Notify me</button>
+            </div>
+            <div class="hp" aria-hidden="true"><label for="lunga-check">Leave this empty</label><input id="lunga-check" name="lunga_check" type="text" tabindex="-1" autocomplete="off"></div>
+            <p id="status" class="status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+
       <div id="done" class="done" hidden>
         <h2 id="done-title">You're on the list</h2>
-        <p id="done-text">We'll email your code at launch.</p>
+        <p id="done-text">We'll email your code on launch day.</p>
         <div class="share-row">
-          <a class="share wa" id="share-wa" href="https://wa.me/?text=Lunga%20waitlist%20https%3A%2F%2Fparadigmshiftapp.com%2Flunga%2F%3Fref%3Dfriend-wa" target="_blank" rel="noopener">Share on WhatsApp</a>
-          <button class="share alt" type="button" id="share">Share to other apps</button>
+          <a class="share" id="share-wa" href="https://wa.me/?text=Lunga%20https%3A%2F%2Fparadigmshiftapp.com%2Flunga%2F%3Fref%3Dfriend-wa" target="_blank" rel="noopener">Share on WhatsApp</a>
+          <button class="share ghost" type="button" id="share">Share to other apps</button>
         </div>
         <p id="share-status" class="status note" role="status" aria-live="polite"></p>
       </div>
     </section>
+
+    <section class="about" aria-labelledby="about-title">
+      <h2 id="about-title"><span class="v v-all">Scooters, laundry and massage in a tap.</span><span class="v v-scooter">Rent a scooter in a tap.</span><span class="v v-laundry">Laundry pickup in a tap.</span><span class="v v-massage">Book a massage in a tap.</span></h2>
+      <p><span class="v v-all">Brought to your villa. Pay by card.</span><span class="v v-scooter">Delivered to your villa. Pay by card.</span><span class="v v-laundry">Picked up and brought back clean. Pay by card.</span><span class="v v-massage">Your therapist comes to your villa. Pay by card.</span></p>
+      <img id="art" class="art" alt="" width="840" height="519" loading="lazy">
+      <script>document.getElementById("art").src = window.LUNGA_ART || "art-scooter.webp";</script>
+      <noscript><img class="art nojs" src="art-scooter.webp" alt="" width="840" height="519"></noscript>
+    </section>
+
+    <p class="fine">20% off your first booking, up to Rp 50,000. Code sent on launch day, valid 30 days.
+      <a href="https://paradigmshiftapp.com/privacy/lunga/">Privacy</a></p>
   </main>
 </div>
 <script src="config.js"></script>
 <script>
-// Sign-ups go to the lunga_waitlist table in Supabase. The publishable key lives in config.js next to this page, so this
-// file can be replaced without losing it. With the table's insert-only rule the key can add sign-ups but can't read them.
+// Email sign-ups (the fallback) go to the lunga_waitlist table in Supabase exactly as before. The publishable key lives
+// in config.js next to this page, so this file can be replaced without losing it.
 const LUNGA_CONFIG = {
   supabaseUrl: "https://lrsqcbpiwsvhxdfeyrdk.supabase.co",
   supabaseKey: (typeof window.LUNGA_KEY === "string" && window.LUNGA_KEY) || "PASTE_SUPABASE_PUBLISHABLE_KEY",
   table: "lunga_waitlist",
-  shareUrl: "https://paradigmshiftapp.com/lunga/"
+  shareUrl: "https://paradigmshiftapp.com/lunga/",
+  waNumber: "6584944709"
 };
 
 (function () {
   const $ = (id) => document.getElementById(id);
-  const form = $("waitlist-form"), statusEl = $("status"), submit = $("submit"), email = $("email");
-  const isConfigured = () => /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(LUNGA_CONFIG.supabaseUrl) &&
-                             !/^PASTE_/.test(LUNGA_CONFIG.supabaseKey) && LUNGA_CONFIG.supabaseKey.length > 20;
   let source = "direct";
   try { const ref = new URLSearchParams(window.location.search).get("ref"); if (ref) source = ref.slice(0, 60); } catch (e) {}
 
+  // WhatsApp: the message is written for them and ends with where they came from, e.g. [LAUNDRY] for ?ref=ad-laundry,
+  // [IG] for ?ref=ig, [WEB] with no ref, so each WhatsApp sign-up can be traced to its ad or post.
+  const code = (source === "direct" ? "WEB" : source.replace(/^ad-/i, "").replace(/[^a-z0-9-]/gi, "").toUpperCase().slice(0, 20)) || "WEB";
+  const waText = "Hi Lunga! Please notify me on launch day for my up to Rp 50,000 off [" + code + "]";
+  const wa = $("wa");
+  wa.href = "https://wa.me/" + LUNGA_CONFIG.waNumber + "?text=" + encodeURIComponent(waText);
+  wa.addEventListener("click", () => { setTimeout(() => { $("after").hidden = false; }, 1500); });
+
+  // Email fallback
+  const form = $("waitlist-form"), statusEl = $("status"), submit = $("submit"), email = $("email");
+  const isConfigured = () => /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(LUNGA_CONFIG.supabaseUrl) &&
+                             !/^PASTE_/.test(LUNGA_CONFIG.supabaseKey) && LUNGA_CONFIG.supabaseKey.length > 20;
+  $("use-email").addEventListener("click", () => {
+    const open = $("email-wrap").hidden;
+    $("email-wrap").hidden = !open; $("use-email").setAttribute("aria-expanded", String(open));
+    if (open) email.focus();
+  });
   function setStatus(text, kind) { statusEl.textContent = text; statusEl.className = "status" + (kind ? " " + kind : ""); }
   function showDone(already) {
-    if (already) {
-      $("done-title").textContent = "You're already on the list";
-      $("done-text").textContent = "We'll email your code at launch.";
-    }
-    $("join-form-wrap").hidden = true; $("done").hidden = false;
+    if (already) $("done-title").textContent = "You're already on the list";
+    $("notify").hidden = true; $("alt").hidden = true; $("done").hidden = false;
     $("done-title").setAttribute("tabindex", "-1"); $("done-title").focus();
   }
   email.addEventListener("input", () => { email.removeAttribute("aria-invalid"); if (statusEl.classList.length === 1) setStatus(""); });
-
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const value = email.value.trim().toLowerCase();
@@ -206,13 +253,12 @@ const LUNGA_CONFIG = {
     } catch (err) {
       setStatus("That didn't go through. Check your connection and try again.");
     } finally {
-      submit.disabled = false; submit.textContent = "Sign up";
+      submit.disabled = false; submit.textContent = "Notify me";
     }
   });
 
-  // Two ways to share: WhatsApp straight away (how people pass things on in Bali), and the phone's own share sheet for
-  // everything else, Instagram included. A website can't post to Instagram by itself, so there's no Instagram button.
-  const text = "Scooters, laundry and massage in Canggu, booked in a tap. Join the Lunga waitlist for up to Rp 50,000 off your first booking.";
+  // Sharing after an email sign-up, as before
+  const text = "Scooters, laundry and massage in Canggu, booked in a tap. Launch day promo: up to Rp 50,000 off your first booking.";
   $("share-wa").href = "https://wa.me/?text=" + encodeURIComponent(text + " " + LUNGA_CONFIG.shareUrl + "?ref=friend-wa");
   $("share").addEventListener("click", async () => {
     const url = LUNGA_CONFIG.shareUrl + "?ref=friend";
