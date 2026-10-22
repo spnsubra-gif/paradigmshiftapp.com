@@ -34,7 +34,6 @@
   --berry: #8B2332; --berry-dark: #731B29; --sand: #F6F1E8; --blush: #F1D3D8; --ink: #2B2320; --hint: #8F807A;
   --warn: #FFE2A6;
   --font: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --stk: min(66vw, 290px);          /* the sticker's size; its text scales with it */
   color-scheme: only light;
 }
 * { box-sizing: border-box; }
@@ -56,17 +55,23 @@ html[data-k="massage"] .v-massage, html:not([data-k]) .v-all { display: inline; 
 .hero { text-align: center; margin-top: 18px; }
 .eyebrow { display: block; font: 700 clamp(26px, 7.6vw, 34px)/1.05 var(--font); letter-spacing: .05em; text-transform: uppercase;
            color: var(--sand); margin: 2px 0 0; text-shadow: 0 2px 14px rgba(38, 6, 14, .35); }
-.sticker { width: var(--stk); height: var(--stk); margin: 22px auto 0; border-radius: 50%; background: var(--sand); color: var(--berry);
-           box-shadow: 0 0 0 7px #FFFFFF, 0 24px 44px -18px rgba(38, 6, 14, .85); transform: rotate(-6deg);
-           display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
-.sticker::before { content: ""; position: absolute; inset: 5%; border-radius: 50%; border: 2px solid var(--berry); }
-.sticker span { display: block; line-height: 1; }
-.s1 { font-weight: 600; font-size: calc(var(--stk) * .095); margin-bottom: calc(var(--stk) * .03); }
-.s2 { font-weight: 700; font-size: calc(var(--stk) * .215); letter-spacing: -.03em; }
-.s3 { font-weight: 700; font-size: calc(var(--stk) * .13); margin-top: calc(var(--stk) * .025); letter-spacing: .02em; }
-.for { color: var(--blush); font-size: 17px; line-height: 1.35; margin: 24px auto 0; max-width: 22em; }
+/* The code, shown at once as a voucher in the ads' sticker style: sand, white outline, a slight tilt, a torn edge. */
+.ticket { position: relative; width: min(100%, 380px); margin: 24px auto 0; padding: 18px 20px 20px; border-radius: 22px;
+          background: var(--sand); color: var(--berry); text-align: center; transform: rotate(-2deg);
+          box-shadow: 0 0 0 6px #FFFFFF, 0 24px 44px -18px rgba(38, 6, 14, .85); }
+.t-head { margin: 0; }
+.t-head span { display: block; }
+.t-label { font: 700 13px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; }
+.t-code { margin-top: 10px; font: 700 clamp(46px, 15vw, 64px)/1 var(--font); letter-spacing: .05em; -webkit-user-select: all; user-select: all; }
+.t-tear { position: relative; height: 0; margin: 16px -20px 14px; border-top: 2px dashed rgba(139, 35, 50, .4); }
+.t-tear::before, .t-tear::after { content: ""; position: absolute; top: -13px; width: 24px; height: 24px; border-radius: 50%; background: var(--berry); }
+.t-tear::before { left: -12px; }
+.t-tear::after { right: -12px; }
+.t-offer { margin: 0; font: 700 21px/1.2 var(--font); }
+.for { color: #5E504B; font-size: 15.5px; line-height: 1.35; margin: 4px auto 0; max-width: 22em; text-wrap: balance; }
+.claim { color: var(--sand); font: 600 17px/1.35 var(--font); margin: 26px auto 0; max-width: 21em; }
 
-.notify { margin-top: 20px; }
+.notify { margin-top: 14px; }
 .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 58px; border-radius: 16px;
           background: var(--sand); color: var(--berry); font: 700 18px/1.1 var(--font); text-decoration: none; padding: 0 18px;
           box-shadow: 0 16px 30px -18px rgba(38, 6, 14, .85); transition: transform .12s ease, background .15s ease; }
@@ -117,12 +122,15 @@ html.js #art, .art.nojs { display: block; }
 
 /* short phone screens (an iPhone SE inside Instagram's browser): smaller sticker so the button shows without scrolling */
 @media (max-height: 700px) and (max-width: 500px) {
-  :root { --stk: min(54vw, 214px); }
   .hero { margin-top: 12px; }
   .eyebrow { font-size: 23px; }
-  .sticker { margin-top: 16px; }
-  .for { font-size: 15.5px; margin-top: 16px; }
-  .notify { margin-top: 14px; }
+  .ticket { margin-top: 16px; padding: 14px 18px 16px; }
+  .t-code { font-size: clamp(40px, 12.5vw, 52px); margin-top: 8px; }
+  .t-tear { margin: 12px -18px 10px; }
+  .t-offer { font-size: 19px; }
+  .for { font-size: 14.5px; }
+  .claim { font-size: 15.5px; margin-top: 18px; }
+  .notify { margin-top: 10px; }
   .wa-btn { min-height: 54px; font-size: 17px; }
 }
 @media (min-width: 760px) {
@@ -141,13 +149,18 @@ html.js #art, .art.nojs { display: block; }
   <main>
     <section class="hero" aria-labelledby="offer">
       <p class="eyebrow">Launch day promo</p>
-      <h1 class="sticker" id="offer"><span class="s1">Up to Rp</span><span class="s2">50,000</span><span class="s3">OFF</span></h1>
-      <p class="for"><span class="v v-all">on your first scooter, laundry or massage booking</span><span class="v v-scooter">on your first scooter rental</span><span class="v v-laundry">on your first laundry pickup</span><span class="v v-massage">on your first massage at your villa</span></p>
+      <div class="ticket">
+        <h1 class="t-head" id="offer"><span class="t-label">Your code</span><span class="t-code">LUNGA20</span></h1>
+        <div class="t-tear" aria-hidden="true"></div>
+        <p class="t-offer">Up to Rp 50,000 off</p>
+        <p class="for"><span class="v v-all">on your first scooter, laundry or massage booking</span><span class="v v-scooter">on your first scooter rental</span><span class="v v-laundry">on your first laundry pickup</span><span class="v v-massage">on your first massage at your villa</span></p>
+      </div>
+      <p class="claim">Claim it and get notified when Lunga is live.</p>
 
       <div class="notify" id="notify">
-        <a class="wa-btn" id="wa" href="https://wa.me/6584944709?text=Hi%20Lunga!%20Please%20notify%20me%20on%20launch%20day%20for%20my%20up%20to%20Rp%2050%2C000%20off%20%5BWEB%5D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.1A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 14h4.5"/></svg><span>Get notified on WhatsApp</span></a>
+        <a class="wa-btn" id="wa" href="https://wa.me/6584944709?text=Hi%20Lunga%21%20I%27d%20like%20to%20claim%20LUNGA20%20and%20get%20notified%20on%20launch%20day%20%5BWEB%5D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.1A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 14h4.5"/></svg><span>Claim on WhatsApp</span></a>
         <p class="how">WhatsApp opens with the message ready.<br><strong>Just tap send.</strong></p>
-        <p class="after" id="after" hidden>Didn't open? WhatsApp us on <a href="https://wa.me/6584944709">+65 8494 4709</a> and say "Notify me".</p>
+        <p class="after" id="after" hidden>Didn't open? WhatsApp us on <a href="https://wa.me/6584944709">+65 8494 4709</a> and say "LUNGA20".</p>
       </div>
 
       <div class="alt" id="alt">
@@ -168,7 +181,7 @@ html.js #art, .art.nojs { display: block; }
 
       <div id="done" class="done" hidden>
         <h2 id="done-title">You're on the list</h2>
-        <p id="done-text">We'll email your code on launch day.</p>
+        <p id="done-text">Your code LUNGA20 is saved to this email. We'll email you on launch day.</p>
         <div class="share-row">
           <a class="share" id="share-wa" href="https://wa.me/?text=Lunga%20https%3A%2F%2Fparadigmshiftapp.com%2Flunga%2F%3Fref%3Dfriend-wa" target="_blank" rel="noopener">Share on WhatsApp</a>
           <button class="share ghost" type="button" id="share">Share to other apps</button>
@@ -185,7 +198,7 @@ html.js #art, .art.nojs { display: block; }
       <noscript><img class="art nojs" src="art-scooter.webp" alt="" width="840" height="519"></noscript>
     </section>
 
-    <p class="fine">20% off your first booking, up to Rp 50,000. Code sent on launch day, valid 30 days.
+    <p class="fine">LUNGA20: 20% off your first booking, up to Rp 50,000, valid 30 days from launch day. Works with the WhatsApp number or email you claim it with.
       <a href="https://paradigmshiftapp.com/privacy/lunga/">Privacy</a></p>
   </main>
 </div>
@@ -209,7 +222,7 @@ const LUNGA_CONFIG = {
   // WhatsApp: the message is written for them and ends with where they came from, e.g. [LAUNDRY] for ?ref=ad-laundry,
   // [IG] for ?ref=ig, [WEB] with no ref, so each WhatsApp sign-up can be traced to its ad or post.
   const code = (source === "direct" ? "WEB" : source.replace(/^ad-/i, "").replace(/[^a-z0-9-]/gi, "").toUpperCase().slice(0, 20)) || "WEB";
-  const waText = "Hi Lunga! Please notify me on launch day for my up to Rp 50,000 off [" + code + "]";
+  const waText = "Hi Lunga! I'd like to claim LUNGA20 and get notified on launch day [" + code + "]";
   const wa = $("wa");
   wa.href = "https://wa.me/" + LUNGA_CONFIG.waNumber + "?text=" + encodeURIComponent(waText);
   wa.addEventListener("click", () => { setTimeout(() => { $("after").hidden = false; }, 1500); });
