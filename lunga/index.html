@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="only light">
 <title>Lunga Launch Promo</title>
-<meta name="description" content="Launch day promo: up to Rp 50,000 off your first scooter, laundry or massage booking in Canggu. Get notified on WhatsApp.">
+<meta name="description" content="Launching 3 November: up to Rp 50,000 off your first scooter, laundry or massage booking in Canggu. Claim your code on WhatsApp.">
 <link rel="canonical" href="https://paradigmshiftapp.com/lunga/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lunga">
 <meta property="og:title" content="Lunga · Up to Rp 50,000 off on launch day">
-<meta property="og:description" content="Launch day promo: up to Rp 50,000 off your first scooter, laundry or massage booking in Canggu. Get notified on WhatsApp.">
+<meta property="og:description" content="Launching 3 November: up to Rp 50,000 off your first scooter, laundry or massage booking in Canggu. Claim your code on WhatsApp.">
 <meta property="og:url" content="https://paradigmshiftapp.com/lunga/">
 <meta property="og:image" content="https://paradigmshiftapp.com/lunga/og.png">
 <meta property="og:image:width" content="1200">
@@ -169,7 +169,7 @@ html.js #art, .art.nojs { display: block; }
         <p class="t-offer">Up to Rp 50,000 off</p>
         <p class="for"><span class="v v-all">on your first scooter, laundry or massage booking</span><span class="v v-scooter">on your first scooter rental</span><span class="v v-laundry">on your first laundry pickup</span><span class="v v-massage">on your first massage at your villa</span></p>
       </div>
-      <p class="claim">Claim it and get notified when Lunga is live.</p>
+      <p class="claim">Claim it and get notified when Lunga launches on 3 November.</p>
 
       <div class="notify" id="notify">
         <a class="wa-btn" id="wa" href="https://wa.me/6584944709?text=Hi%20Lunga%21%20I%27d%20like%20to%20claim%20my%20code%20LUNGA20%20and%20get%20notified%20on%20launch%20day%20%5BWEB%5D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.1A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 14h4.5"/></svg><span>Claim on WhatsApp</span></a>
@@ -195,7 +195,7 @@ html.js #art, .art.nojs { display: block; }
 
       <div id="done" class="done" hidden>
         <h2 id="done-title">You're on the list</h2>
-        <p id="done-text">We'll email your code on launch day.</p>
+        <p id="done-text">We'll email your code on launch day, 3 November.</p>
         <div class="share-row">
           <a class="share" id="share-wa" href="https://wa.me/?text=Lunga%20https%3A%2F%2Fparadigmshiftapp.com%2Flunga%2F%3Fref%3Dfriend-wa" target="_blank" rel="noopener">Share on WhatsApp</a>
           <button class="share ghost" type="button" id="share">Share to other apps</button>
@@ -212,7 +212,7 @@ html.js #art, .art.nojs { display: block; }
       <noscript><img class="art nojs" src="art-scooter.webp" alt="" width="840" height="519"></noscript>
     </section>
 
-    <p class="fine">20% off your first booking, up to Rp 50,000, valid 30 days from launch day. One code per person, and it only works once it's claimed.
+    <p class="fine">20% off your first booking, up to Rp 50,000, valid 30 days from launch on 3 November. One code per person, and it only works once it's claimed.
       <a href="https://paradigmshiftapp.com/privacy/lunga/">Privacy</a></p>
   </main>
 </div>
@@ -247,6 +247,20 @@ const LUNGA_CONFIG = {
   const form = $("waitlist-form"), statusEl = $("status"), submit = $("submit"), email = $("email");
   const isConfigured = () => /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(LUNGA_CONFIG.supabaseUrl) &&
                              !/^PASTE_/.test(LUNGA_CONFIG.supabaseKey) && LUNGA_CONFIG.supabaseKey.length > 20;
+
+  // Counter (23 Oct): an anonymous row in lunga_page_events when the page opens ("view") and when Claim is tapped
+  // ("claim_tap"), with the ref tag and this visitor's code; no names, numbers or emails. Insert-only: the public key
+  // can't read it back. It never blocks the page, and a count that fails is simply lost.
+  function track(event) {
+    if (!isConfigured()) return;
+    const headers = { "apikey": LUNGA_CONFIG.supabaseKey, "Content-Type": "application/json", "Prefer": "return=minimal" };
+    if (/^eyJ/.test(LUNGA_CONFIG.supabaseKey)) headers["Authorization"] = "Bearer " + LUNGA_CONFIG.supabaseKey;
+    const opts = { method: "POST", headers, body: JSON.stringify({ event, source: source.slice(0, 60), code: promo }) };
+    const url = LUNGA_CONFIG.supabaseUrl.replace(/\/$/, "") + "/rest/v1/lunga_page_events";
+    try { fetch(url, Object.assign({ keepalive: true }, opts)).catch(() => fetch(url, opts).catch(() => {})); } catch (e) {}
+  }
+  track("view");
+  wa.addEventListener("click", () => track("claim_tap"));
   $("use-email").addEventListener("click", () => {
     const open = $("email-wrap").hidden;
     $("email-wrap").hidden = !open; $("use-email").setAttribute("aria-expanded", String(open));
