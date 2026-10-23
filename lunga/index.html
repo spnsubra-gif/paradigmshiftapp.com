@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="only light">
 <title>Lunga Launch Promo</title>
-<meta name="description" content="Launching 3 November: up to Rp 50,000 off your first scooter, laundry or massage booking in Canggu. Claim your code on WhatsApp.">
+<meta name="description" content="Launching 3 November: up to Rp 50,000 off your first scooter, laundry or massage booking in Canggu, and a free week of scooter rental to win. Claim your code on WhatsApp.">
 <link rel="canonical" href="https://paradigmshiftapp.com/lunga/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lunga">
 <meta property="og:title" content="Lunga · Up to Rp 50,000 off on launch day">
-<meta property="og:description" content="Launching 3 November: up to Rp 50,000 off your first scooter, laundry or massage booking in Canggu. Claim your code on WhatsApp.">
+<meta property="og:description" content="Launching 3 November: up to Rp 50,000 off your first scooter, laundry or massage booking in Canggu, and a free week of scooter rental to win. Claim your code on WhatsApp.">
 <meta property="og:url" content="https://paradigmshiftapp.com/lunga/">
 <meta property="og:image" content="https://paradigmshiftapp.com/lunga/og.png">
 <meta property="og:image:width" content="1200">
@@ -161,6 +161,15 @@ form { margin: 0; }
 html.js #art, .art.nojs { display: block; }
 
 .fine { color: var(--blush); font-size: 12.5px; line-height: 1.5; margin: 18px 0 0; opacity: .9; text-align: center; }
+/* The launch giveaway (23 Oct): the prize line above the button, the rules folded at the bottom. */
+.prize { margin: 16px auto 0; max-width: 22em; text-align: center; }
+.p-head { margin: 0; color: var(--sand); font: 700 18px/1.25 var(--font); text-wrap: balance; }
+.p-sub { margin: 4px 0 0; color: var(--blush); font: 500 14px/1.4 var(--font); text-wrap: balance; }
+.p-sub a { color: var(--sand); font-weight: 600; }
+.rules { margin: 14px auto 0; max-width: 34em; color: var(--blush); font-size: 12.5px; line-height: 1.5; text-align: left; }
+.rules summary { cursor: pointer; text-align: center; color: var(--sand); font-weight: 600; }
+.rules ul { margin: 8px 0 0; padding-left: 1.2em; }
+.rules li { margin: 4px 0; }
 .hp { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
@@ -174,6 +183,9 @@ html.js #art, .art.nojs { display: block; }
   .t-offer { font-size: 19px; }
   .for { font-size: 14.5px; }
   .claim { font-size: 15.5px; margin-top: 10px; }
+  .prize { margin-top: 10px; }
+  .p-head { font-size: 16.5px; }
+  .p-sub { font-size: 13px; margin-top: 2px; }
   .launch { margin-top: 12px; }
   .clock { gap: 8px; margin-top: 7px; }
   .unit { gap: 5px; }
@@ -213,10 +225,14 @@ html.js #art, .art.nojs { display: block; }
           <div class="unit"><span class="flip" id="cd-s"></span><span class="u">secs</span></div>
         </div>
       </div>
-      <p class="claim" id="claim">Claim it and get notified on launch day.</p>
+      <div class="prize" id="prize">
+        <p class="p-head">Win a free week of scooter rental</p>
+        <p class="p-sub">Claim your code before 3 November to get notified at launch and enter the draw. <a href="#rules" id="rules-link">Rules</a></p>
+      </div>
+      <p class="claim" id="claim" hidden>Claim it and use it on your first booking.</p>
 
       <div class="notify" id="notify">
-        <a class="wa-btn" id="wa" href="https://wa.me/6584944709?text=Hi%20Lunga%21%20I%27d%20like%20to%20claim%20my%20code%20LUNGA20%20and%20get%20notified%20on%20launch%20day%20%5BWEB%5D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.1A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 14h4.5"/></svg><span>Claim on WhatsApp</span></a>
+        <a class="wa-btn" id="wa" href="https://wa.me/6584944709?text=Hi%20Lunga%21%20I%27d%20like%20to%20claim%20my%20code%20LUNGA20%2C%20enter%20the%20scooter%20giveaway%20and%20get%20notified%20on%20launch%20day%20%5BWEB%5D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.1A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 14h4.5"/></svg><span>Claim on WhatsApp</span></a>
         <p class="how">WhatsApp opens with the message ready.<br><strong>Just tap send.</strong></p>
         <p class="after" id="after" hidden>Didn't open? WhatsApp us on <a href="https://wa.me/6584944709">+65 8494 4709</a> with your code, <strong id="code-again">LUNGA20</strong>.</p>
       </div>
@@ -239,7 +255,7 @@ html.js #art, .art.nojs { display: block; }
 
       <div id="done" class="done" hidden>
         <h2 id="done-title">You're on the list</h2>
-        <p id="done-text">We'll email your code on launch day, 3 November.</p>
+        <p id="done-text">We'll email your code on launch day, 3 November. You're in the scooter giveaway draw too.</p>
         <div class="share-row">
           <a class="share" id="share-wa" href="https://wa.me/?text=Lunga%20https%3A%2F%2Fparadigmshiftapp.com%2Flunga%2F%3Fref%3Dfriend-wa" target="_blank" rel="noopener">Share on WhatsApp</a>
           <button class="share ghost" type="button" id="share">Share to other apps</button>
@@ -258,6 +274,18 @@ html.js #art, .art.nojs { display: block; }
 
     <p class="fine">20% off your first booking, up to Rp 50,000, valid 30 days from launch on 3 November. One code per person, and it only works once it's claimed.
       <a href="https://paradigmshiftapp.com/privacy/lunga/">Privacy</a></p>
+    <details class="rules" id="rules">
+      <summary>Scooter giveaway rules</summary>
+      <ul>
+        <li>The prize is a free week (7 days) of Yamaha NMAX rental from one of Lunga's scooter partners, with helmet, phone holder and raincoat.</li>
+        <li>It's delivered and picked up free where you're staying anywhere in Badung, Tabanan or Denpasar, which includes Canggu, Pererenan, Seseh, Seminyak, Kuta and Uluwatu. Staying somewhere else? Collect it in Seseh, or give the prize to a friend who's staying in the area.</li>
+        <li>To enter, claim your code on WhatsApp or join by email on this page by 23:59 WITA on Monday 2 November 2026. It's free, there's one entry per person, and codes already claimed count.</li>
+        <li>We draw one winner at random on Tuesday 3 November 2026, launch day, and tell them on WhatsApp or by email. If we don't hear back within 3 days, we draw again. We announce the draw on Instagram @bali_lunga.</li>
+        <li>Use the week within 30 days of the draw (by 3 December 2026), starting on a date agreed at least 2 days ahead, subject to availability.</li>
+        <li>At handover the rider shows their passport and signs the rental agreement, and must be 18 or over with a licence that's valid for riding a motorbike in Indonesia.</li>
+        <li>There's no cash alternative. Run by Paradigm Shift Apps, Singapore (UEN 53532771D). This giveaway isn't sponsored, endorsed or administered by, or associated with, Meta, Facebook, Instagram or WhatsApp.</li>
+      </ul>
+    </details>
   </main>
 </div>
 <script src="config.js"></script>
@@ -281,7 +309,14 @@ const LUNGA_CONFIG = {
   // [IG] for ?ref=ig, [WEB] with no ref, so each WhatsApp sign-up can be traced to its ad or post.
   const code = (source === "direct" ? "WEB" : source.replace(/^ad-/i, "").replace(/[^a-z0-9-]/gi, "").toUpperCase().slice(0, 20)) || "WEB";
   const promo = window.LUNGA_CODE || "LUNGA20";
-  const waText = "Hi Lunga! I'd like to claim my code " + promo + " and get notified on launch day [" + code + "]";
+  // Until launch (3 Nov 00:00 WITA) the message also enters the scooter giveaway (23 Oct); after it, just the code.
+  const LAUNCH_AT = Date.UTC(2026, 10, 2, 16, 0, 0);
+  const waText = Date.now() < LAUNCH_AT
+    ? "Hi Lunga! I'd like to claim my code " + promo + ", enter the scooter giveaway and get notified on launch day [" + code + "]"
+    : "Hi Lunga! I'd like to claim my code " + promo + " for my first booking [" + code + "]";
+  $("rules-link").addEventListener("click", () => { $("rules").open = true; });
+  // A link straight to the rules (paradigmshiftapp.com/lunga/#rules, as in the WhatsApp auto-reply) opens them too.
+  if (location.hash === "#rules") { $("rules").open = true; setTimeout(() => $("rules").scrollIntoView(), 50); }
   $("code-again").textContent = promo;
   const wa = $("wa");
   wa.href = "https://wa.me/" + LUNGA_CONFIG.waNumber + "?text=" + encodeURIComponent(waText);
@@ -310,7 +345,7 @@ const LUNGA_CONFIG = {
   // when its number changes; with reduced motion the numbers just change. At zero the clock gives way to "Lunga is live".
   // Wrapped so that nothing here can stop the email form below from working.
   try {
-  const LAUNCH = Date.UTC(2026, 10, 2, 16, 0, 0);
+  const LAUNCH = LAUNCH_AT;
   const still = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
   const cards = ["cd-d", "cd-h", "cd-m", "cd-s"].map((id) => {
     const el = $(id); if (!el) return null;
@@ -331,6 +366,7 @@ const LUNGA_CONFIG = {
     box.classList.add("live"); box.setAttribute("aria-label", "Lunga is live");
     $("l-label").textContent = "Lunga is live";
     $("claim").textContent = "Claim it and use it on your first booking.";
+    $("claim").hidden = false; $("prize").hidden = true;
   }
   function tick(animate) {
     const left = LAUNCH - Date.now();
