@@ -82,7 +82,38 @@ html[data-k="massage"] .v-massage, html:not([data-k]) .v-all { display: inline; 
 .t-tear::after { right: -12px; }
 .t-offer { margin: 0; font: 700 21px/1.2 var(--font); }
 .for { color: #5E504B; font-size: 15.5px; line-height: 1.35; margin: 4px auto 0; max-width: 22em; text-wrap: balance; }
-.claim { color: var(--sand); font: 600 17px/1.35 var(--font); margin: 26px auto 0; max-width: 21em; text-wrap: balance; }
+.claim { color: var(--sand); font: 600 17px/1.35 var(--font); margin: 16px auto 0; max-width: 21em; text-wrap: balance; }
+/* Countdown to launch as flip cards (23 Oct): sand cards, berry digits, a hinge line; the flaps show only while flipping. */
+.launch { margin: 22px auto 0; text-align: center; }
+.l-label { margin: 0; color: var(--blush); font: 700 12.5px/1.2 var(--font); letter-spacing: .16em; text-transform: uppercase; }
+.clock { display: none; justify-content: center; gap: 10px; margin-top: 10px; }
+html.js .clock { display: flex; }
+.unit { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.u { color: var(--blush); font: 600 10.5px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; }
+.flip { --h: 60px; position: relative; display: block; width: 64px; height: var(--h); perspective: 300px;
+        font: 700 37px/1 var(--font); color: var(--berry); }
+.flip > span { position: absolute; left: 0; width: 100%; height: 50%; overflow: hidden; background: var(--sand); text-align: center; }
+.flip .b, .flip .fb { background: #EDE4D6; }
+.flip i { display: block; font-style: normal; line-height: var(--h); }
+.flip .t, .flip .ft { top: 0; border-radius: 10px 10px 0 0; }
+.flip .b, .flip .fb { top: 50%; border-radius: 0 0 10px 10px; box-shadow: 0 10px 18px -10px rgba(38, 6, 14, .8); }
+.flip .b i, .flip .fb i { margin-top: calc(var(--h) / -2); }
+.flip .ft, .flip .fb { display: none; z-index: 2; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.flip .ft { transform-origin: 50% 100%; }
+.flip .fb { transform-origin: 50% 0; transform: rotateX(90deg); }
+.flip.go .ft, .flip.go .fb { display: block; }
+.flip.go .ft { animation: cd-top .28s ease-in forwards; }
+.flip.go .fb { animation: cd-bottom .28s .28s ease-out forwards; }
+.flip::after { content: ""; position: absolute; left: 0; right: 0; top: calc(50% - 1px); height: 2px; background: #D8CCB8; z-index: 3; }
+/* the split's two notches, like the voucher's tear line */
+.flip::before { content: ""; position: absolute; left: -3px; right: -3px; top: calc(50% - 3.5px); height: 7px; z-index: 4;
+                background: radial-gradient(circle at 3px 50%, var(--berry) 3.5px, transparent 4px),
+                            radial-gradient(circle at calc(100% - 3px) 50%, var(--berry) 3.5px, transparent 4px); }
+.launch.live .clock { display: none; }
+.launch.live .l-label { color: var(--sand); font-size: 17px; letter-spacing: .12em; }
+.flip { font-variant-numeric: tabular-nums; }
+@keyframes cd-top { from { transform: rotateX(0deg); background-color: #F6F1E8; } to { transform: rotateX(-90deg); background-color: #CDBFAA; } }
+@keyframes cd-bottom { from { transform: rotateX(90deg); background-color: #C9BAA4; } to { transform: rotateX(0deg); background-color: #EDE4D6; } }
 
 .notify { margin-top: 14px; }
 .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 58px; border-radius: 16px;
@@ -142,7 +173,10 @@ html.js #art, .art.nojs { display: block; }
   .t-tear { margin: 12px -18px 10px; }
   .t-offer { font-size: 19px; }
   .for { font-size: 14.5px; }
-  .claim { font-size: 15.5px; margin-top: 18px; }
+  .claim { font-size: 15.5px; margin-top: 12px; }
+  .launch { margin-top: 14px; }
+  .clock { gap: 8px; margin-top: 8px; }
+  .flip { --h: 50px; width: 54px; font-size: 31px; }
   .notify { margin-top: 10px; }
   .wa-btn { min-height: 54px; font-size: 17px; }
 }
@@ -169,7 +203,16 @@ html.js #art, .art.nojs { display: block; }
         <p class="t-offer">Up to Rp 50,000 off</p>
         <p class="for"><span class="v v-all">on your first scooter, laundry or massage booking</span><span class="v v-scooter">on your first scooter rental</span><span class="v v-laundry">on your first laundry pickup</span><span class="v v-massage">on your first massage at your villa</span></p>
       </div>
-      <p class="claim">Claim it and get notified when Lunga launches on 3 November.</p>
+      <div class="launch" role="timer" aria-label="Lunga launches on 3 November">
+        <p class="l-label" id="l-label">Lunga launches 3 November</p>
+        <div class="clock" id="clock" aria-hidden="true">
+          <div class="unit"><span class="flip" id="cd-d"></span><span class="u">days</span></div>
+          <div class="unit"><span class="flip" id="cd-h"></span><span class="u">hours</span></div>
+          <div class="unit"><span class="flip" id="cd-m"></span><span class="u">mins</span></div>
+          <div class="unit"><span class="flip" id="cd-s"></span><span class="u">secs</span></div>
+        </div>
+      </div>
+      <p class="claim" id="claim">Claim it and get notified on launch day.</p>
 
       <div class="notify" id="notify">
         <a class="wa-btn" id="wa" href="https://wa.me/6584944709?text=Hi%20Lunga%21%20I%27d%20like%20to%20claim%20my%20code%20LUNGA20%20and%20get%20notified%20on%20launch%20day%20%5BWEB%5D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.1A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 14h4.5"/></svg><span>Claim on WhatsApp</span></a>
@@ -261,6 +304,48 @@ const LUNGA_CONFIG = {
   }
   track("view");
   wa.addEventListener("click", () => track("claim_tap"));
+
+  // Countdown to launch, Tue 3 Nov 2026 00:00 in Bali (WITA, UTC+8), as flip cards (Suria, 23 Oct). A card flips only
+  // when its number changes; with reduced motion the numbers just change. At zero the clock gives way to "Lunga is live".
+  // Wrapped so that nothing here can stop the email form below from working.
+  try {
+  const LAUNCH = Date.UTC(2026, 10, 2, 16, 0, 0);
+  const still = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const cards = ["cd-d", "cd-h", "cd-m", "cd-s"].map((id) => {
+    const el = $(id); if (!el) return null;
+    el.innerHTML = '<span class="t"><i></i></span><span class="b"><i></i></span><span class="ft"><i></i></span><span class="fb"><i></i></span>';
+    const q = (c) => el.querySelector("." + c + " > i");
+    return { el, t: q("t"), b: q("b"), ft: q("ft"), fb: q("fb"), v: null, timer: 0 };
+  });
+  function setCard(c, val, animate) {
+    if (c.v === val) return;
+    const old = c.v; c.v = val;
+    if (!animate || still || old === null) { c.t.textContent = val; c.b.textContent = val; return; }
+    c.t.textContent = val; c.b.textContent = old; c.ft.textContent = old; c.fb.textContent = val;
+    c.el.classList.remove("go"); void c.el.offsetWidth; c.el.classList.add("go");
+    clearTimeout(c.timer); c.timer = setTimeout(() => { c.b.textContent = val; c.el.classList.remove("go"); }, 600);
+  }
+  function live() {
+    const box = $("l-label").parentNode;
+    box.classList.add("live"); box.setAttribute("aria-label", "Lunga is live");
+    $("l-label").textContent = "Lunga is live";
+    $("claim").textContent = "Claim it and use it on your first booking.";
+  }
+  function tick(animate) {
+    const left = LAUNCH - Date.now();
+    if (left <= 0) { live(); return false; }
+    let s = Math.floor(left / 1000);
+    const d = Math.floor(s / 86400); s -= d * 86400;
+    const h = Math.floor(s / 3600); s -= h * 3600;
+    const m = Math.floor(s / 60); s -= m * 60;
+    [d, h, m, s].forEach((v, i) => setCard(cards[i], String(v).padStart(2, "0"), animate));
+    return true;
+  }
+  if (cards.every(Boolean) && tick(false)) {
+    const loop = () => { if (tick(true)) setTimeout(loop, 1005 - (Date.now() % 1000)); };
+    setTimeout(loop, 1005 - (Date.now() % 1000));
+  }
+  } catch (e) {}
   $("use-email").addEventListener("click", () => {
     const open = $("email-wrap").hidden;
     $("email-wrap").hidden = !open; $("use-email").setAttribute("aria-expanded", String(open));
