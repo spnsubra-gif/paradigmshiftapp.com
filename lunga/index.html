@@ -88,10 +88,10 @@ html[data-k="massage"] .v-massage, html:not([data-k]) .v-all { display: inline; 
 .l-label { margin: 0; color: var(--blush); font: 700 12.5px/1.2 var(--font); letter-spacing: .16em; text-transform: uppercase; }
 .clock { display: none; justify-content: center; gap: 10px; margin-top: 10px; }
 html.js .clock { display: flex; }
-.unit { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.u { color: var(--blush); font: 600 10.5px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; }
-.flip { --h: 60px; position: relative; display: block; width: 64px; height: var(--h); perspective: 300px;
-        font: 700 37px/1 var(--font); color: var(--berry); }
+.unit { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.u { color: var(--blush); font: 600 11.5px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; }
+.flip { --h: 68px; position: relative; display: block; width: min(70px, calc((100vw - 66px) / 4)); height: var(--h);
+        perspective: 320px; font: 700 42px/1 var(--font); color: var(--berry); }
 .flip > span { position: absolute; left: 0; width: 100%; height: 50%; overflow: hidden; background: var(--sand); text-align: center; }
 .flip .b, .flip .fb { background: #EDE4D6; }
 .flip i { display: block; font-style: normal; line-height: var(--h); }
@@ -104,11 +104,11 @@ html.js .clock { display: flex; }
 .flip.go .ft, .flip.go .fb { display: block; }
 .flip.go .ft { animation: cd-top .28s ease-in forwards; }
 .flip.go .fb { animation: cd-bottom .28s .28s ease-out forwards; }
-.flip::after { content: ""; position: absolute; left: 0; right: 0; top: calc(50% - 1px); height: 2px; background: #D8CCB8; z-index: 3; }
+.flip::after { content: ""; position: absolute; left: 0; right: 0; top: calc(50% - .5px); height: 1px; background: #D8CCB8; z-index: 3; }
 /* the split's two notches, like the voucher's tear line */
-.flip::before { content: ""; position: absolute; left: -3px; right: -3px; top: calc(50% - 3.5px); height: 7px; z-index: 4;
-                background: radial-gradient(circle at 3px 50%, var(--berry) 3.5px, transparent 4px),
-                            radial-gradient(circle at calc(100% - 3px) 50%, var(--berry) 3.5px, transparent 4px); }
+.flip::before { content: ""; position: absolute; left: -2px; right: -2px; top: calc(50% - 2.5px); height: 5px; z-index: 4;
+                background: radial-gradient(circle at 2px 50%, var(--berry) 2.5px, transparent 3px),
+                            radial-gradient(circle at calc(100% - 2px) 50%, var(--berry) 2.5px, transparent 3px); }
 .launch.live .clock { display: none; }
 .launch.live .l-label { color: var(--sand); font-size: 17px; letter-spacing: .12em; }
 .flip { font-variant-numeric: tabular-nums; }
@@ -173,10 +173,11 @@ html.js #art, .art.nojs { display: block; }
   .t-tear { margin: 12px -18px 10px; }
   .t-offer { font-size: 19px; }
   .for { font-size: 14.5px; }
-  .claim { font-size: 15.5px; margin-top: 12px; }
-  .launch { margin-top: 14px; }
-  .clock { gap: 8px; margin-top: 8px; }
-  .flip { --h: 50px; width: 54px; font-size: 31px; }
+  .claim { font-size: 15.5px; margin-top: 10px; }
+  .launch { margin-top: 12px; }
+  .clock { gap: 8px; margin-top: 7px; }
+  .unit { gap: 5px; }
+  .flip { --h: 56px; width: min(60px, calc((100vw - 60px) / 4)); font-size: 35px; }
   .notify { margin-top: 10px; }
   .wa-btn { min-height: 54px; font-size: 17px; }
 }
